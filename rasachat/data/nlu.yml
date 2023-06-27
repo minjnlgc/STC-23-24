@@ -482,7 +482,7 @@ nlu:
     - I want to get more
     - I want to withdraw
     - let's get more
-  - let's decrease him
+    - let's decrease him
 
 - intent: should_i_unfollow
   examples: |
