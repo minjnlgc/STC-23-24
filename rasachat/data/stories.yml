@@ -6,6 +6,11 @@ stories:
   #- intent: what_can_you_do
   #- action: utter_what_I_can_do
 
+- story: doing my best
+  steps:
+  - intent: why_did_you
+  - action: utter_im_doing_my_best
+
 - story: news
   steps: 
   - intent: newsfeed

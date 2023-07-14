@@ -1,4 +1,4 @@
-version: "3.6"
+version: "3.1"
 nlu: 
 - intent: what_can_you_do
   examples: |  
@@ -531,8 +531,8 @@ nlu:
     - stop following [florianne paget](name)
     - stop following [Benjamin Parker](name)
     - stop following [paulinho](name)
-    - I want to follow [Florianne Paget](name)
-    - I want to follow [parker](name)
+    - I want to unfollow [Florianne Paget](name)
+    - I want to unfollow [parker](name)
     - I would like to unfollow [paulinho simoes](name)
     - I would like to unfollow [William](name)
     - I want to stop following [alois reiter](name)
