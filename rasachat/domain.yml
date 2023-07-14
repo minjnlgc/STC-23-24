@@ -1,23 +1,28 @@
+version: "3.1"
+
 entities:
   - name
   - amount
+  - portfolio_query
+  - amount_query
+  - attribute
 
 intents:
-  - what_can_you_do: {triggers: action_what_I_can_do}
+  - what_can_you_do
   - greet
   - goodbye
-  - thank_you: {triggers: utter_no_problem}
-  - ok: {triggers: utter_cool}
-  - why_did_you: {triggers: utter_im_doing_my_best}
-  - newsfeed: {triggers: utter_newsfeed}
+  - thank_you
+  - ok
+  - why_did_you
+  - newsfeed
   - affirm
-  - deny: {triggers: utter_cool}
+  - deny
   - mood_great
   - mood_unhappy
   - do_it
-  - ask_general_advice: {triggers: action_give_general_advice}
-  - ask_follow_advice: {triggers: action_give_following_advice}
-  - ask_unfollow_advice: {triggers: action_give_unfollowing_advice}
+  - ask_general_advice
+  - ask_follow_advice
+  - ask_unfollow_advice
   - follow
   - follow_him_her
   - should_i_follow
@@ -34,43 +39,43 @@ intents:
   - withdraw_amount_from_him_her
   - withdraw_from
   - withdraw_from_him_her
-  - unfollow_everyone: {triggers: utter_are_you_sure_unfollow_everyone}
-  - follow_everyone: {triggers: utter_please_follow_one_portfolio_at_a_time}
+  - unfollow_everyone
+  - follow_everyone
 
 actions:
-- utter_greet
-- utter_cheer_up
-- utter_happy
-- utter_goodbye
-- utter_invalid_portfolio
-- utter_already_followed_portfolio
-- utter_already_not_followed_portfolio
-- utter_invalid_amount
-- utter_are_you_sure_unfollow_everyone
-- utter_please_follow_one_portfolio_at_a_time
-- utter_okay
-- utter_no_problem
-- utter_cool
-- utter_im_doing_my_best
-- utter_newsfeed
-- action_what_I_can_do
-- action_give_general_advice
-- action_give_following_advice
-- action_give_unfollowing_advice
-- action_follow
-- action_ask_add_amount
-- action_ask_withdraw_amount
-- action_should_i_follow_advice
-- action_should_i_unfollow_advice
-- action_fetch_portfolio
-- action_unfollow
-- action_add_amount
-- action_withdraw_amount
-- action_unfollow_everyone
-- action_reset_slots
-- action_fallback
+  - utter_greet
+  - utter_cheer_up
+  - utter_happy
+  - utter_goodbye
+  - utter_invalid_portfolio
+  - utter_already_followed_portfolio
+  - utter_already_not_followed_portfolio
+  - utter_invalid_amount
+  - utter_are_you_sure_unfollow_everyone
+  - utter_please_follow_one_portfolio_at_a_time
+  - utter_okay
+  - utter_no_problem
+  - utter_cool
+  - utter_im_doing_my_best
+  - utter_newsfeed
+  - action_what_I_can_do
+  - action_give_general_advice
+  - action_give_following_advice
+  - action_give_unfollowing_advice
+  - action_follow
+  - action_ask_add_amount
+  - action_ask_withdraw_amount
+  - action_should_i_follow_advice
+  - action_should_i_unfollow_advice
+  - action_fetch_portfolio
+  - action_unfollow
+  - action_add_amount
+  - action_withdraw_amount
+  - action_unfollow_everyone
+  - action_reset_slots
+  - action_fallback
 
-templates:
+responses:
   utter_what_i_can_do:
   - text: "Good question! You can tell me to follow or unfollow portfolios, add or withdraw amounts and ask me things like:  \"Should I invest 50 in ralph?\", \"Who should I unfollow?\", \"Invest another 100 on Aricka\" or \"withdraw from alois\""
     buttons:
