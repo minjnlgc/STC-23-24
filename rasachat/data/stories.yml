@@ -1,10 +1,10 @@
 version: "3.1"
 
 stories: 
-#- story: what_can_you_do
-  #steps: 
-  #- intent: what_can_you_do
-  #- action: utter_what_I_can_do
+- story: what_can_you_do
+  steps: 
+  - intent: what_can_you_do
+  - action: utter_what_I_can_do
 
 - story: doing my best
   steps:
@@ -55,7 +55,7 @@ stories:
 - story: nevermind
   steps: 
   - intent: deny
-  - action: action_add_amount
+  - action: action_reset_slots
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":null,"name":null,"amount_query":null,"amount":null}]
   - action: utter_cool
@@ -63,7 +63,7 @@ stories:
 - story: give_general_advice
   steps: 
   - intent: ask_general_advice
-  - action: action_add_amount
+  - action: action_reset_slots
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":null,"name":null,"amount_query":null,"amount":null}]
   - action: action_give_general_advice
@@ -73,7 +73,7 @@ stories:
 - story: give_general_advice_follow_him_her
   steps: 
   - intent: ask_general_advice
-  - action: action_add_amount
+  - action: action_reset_slots
   - action: action_give_general_advice
   - slot_was_set: 
     - name: [{"name":"Aricka Lewis","portfolio_query":"not_followed"}]
@@ -85,7 +85,7 @@ stories:
 - story: give_general_advice_follow_do_it
   steps: 
   - intent: ask_general_advice
-  - action: action_add_amount
+  - action: action_reset_slots
   - action: action_give_general_advice
   - slot_was_set: 
     - name: [{"name":"Aricka Lewis","portfolio_query":"not_followed"}]
@@ -99,7 +99,7 @@ stories:
 - story: give_general_advice_unfollow_him_her
   steps: 
   - intent: ask_general_advice
-  - action: action_add_amount
+  - action: action_reset_slots
   - action: action_give_general_advice
   - slot_was_set: 
     - name: [{"name":"Masami Nishimura","portfolio_query":"followed"}]
@@ -109,7 +109,7 @@ stories:
 - story: give_general_advice_unfollow_do_it
   steps: 
   - intent: ask_general_advice
-  - action: action_add_amount
+  - action: action_reset_slots
   - action: action_give_general_advice
   - slot_was_set: 
     - name: [{"name":"Paulinho Simoes","portfolio_query":"followed"}]
@@ -121,7 +121,7 @@ stories:
 - story: give_general_advice_unfollow_do_it
   steps: 
   - intent: ask_general_advice
-  - action: action_add_amount
+  - action: action_reset_slots
   - action: action_give_general_advice
   - slot_was_set: 
     - name: [{"name":"Alois Reiter","portfolio_query":"followed"}]
@@ -133,7 +133,7 @@ stories:
 - story: give_follow_advice_give_follow_advice
   steps: 
   - intent: ask_follow_advice
-  - action: action_add_amount
+  - action: action_reset_slots
   - action: action_give_following_advice
   - slot_was_set: 
     - name: [{"name":"Andrzej Kraviec"}]
@@ -141,7 +141,7 @@ stories:
 - story: give_follow_advice_with_follow
   steps: 
   - intent: ask_follow_advice
-  - action: action_add_amount
+  - action: action_reset_slots
   - action: action_give_following_advice
   - slot_was_set: 
     - name: [{"name":"Andrzej Kraviec"}]
@@ -155,7 +155,7 @@ stories:
 - story: give_follow_advice_with_follow_do_it
   steps: 
   - intent: ask_follow_advice
-  - action: action_add_amount
+  - action: action_reset_slots
   - action: action_give_following_advice
   - slot_was_set: 
     - name: [{"name":"Andrzej Kraviec"}]
@@ -169,7 +169,7 @@ stories:
 - story: give_follow_advice_with_add_amount
   steps: 
   - intent: ask_follow_advice
-  - action: action_add_amount
+  - action: action_reset_slots
   - action: action_give_following_advice
   - slot_was_set: 
     - name: [{"name":"William Shore"}]
@@ -179,7 +179,7 @@ stories:
 - story: give_follow_advice_with_add
   steps: 
   - intent: ask_follow_advice
-  - action: action_add_amount
+  - action: action_reset_slots
   - action: action_give_following_advice
   - slot_was_set: 
     - name: [{"name":"William Shore"}]
@@ -193,7 +193,7 @@ stories:
 - story: give_unfollow_advice_give_unfollow_advice
   steps: 
   - intent: ask_unfollow_advice
-  - action: action_add_amount
+  - action: action_reset_slots
   - action: action_give_unfollowing_advice
   - slot_was_set: 
     - name: [{"name":"Ralph Axelsen"}]
@@ -201,7 +201,7 @@ stories:
 - story: give_unfollow_advice_with_unfollow
   steps: 
   - intent: ask_unfollow_advice
-  - action: action_add_amount
+  - action: action_reset_slots
   - action: action_give_unfollowing_advice
   - slot_was_set: 
     - name: [{"name":"Aricka Lewis"}]
@@ -211,7 +211,7 @@ stories:
 - story: give_unfollow_advice_with_unfollow
   steps: 
   - intent: ask_unfollow_advice
-  - action: action_add_amount
+  - action: action_reset_slots
   - action: action_give_unfollowing_advice
   - slot_was_set: 
     - name: [{"name":"Aricka Lewis"}]
@@ -221,7 +221,7 @@ stories:
 - story: give_unfollow_advice_with_withdraw_amount
   steps: 
   - intent: ask_unfollow_advice
-  - action: action_add_amount
+  - action: action_reset_slots
   - action: action_give_unfollowing_advice
   - slot_was_set: 
     - name: [{"name":"Masami Nishimura"}]
@@ -233,8 +233,8 @@ stories:
 - story: follow_successful
   steps: 
   - intent: follow
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"not_followed","name":"Aricka Lewis"}]
   - action: action_ask_add_amount
@@ -246,8 +246,8 @@ stories:
 - story: follow_invalid_name
   steps: 
   - intent: follow
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"invalid","name":"Jeremy"}]
   - action: utter_invalid_portfolio
@@ -255,8 +255,8 @@ stories:
 - story: follow_null
   steps: 
   - intent: follow
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":null,"name":null}]
   - action: utter_invalid_portfolio
@@ -264,8 +264,8 @@ stories:
 - story: follow_already_followed
   steps: 
   - intent: follow
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"followed","name":"Alois Reiter"}]
   - action: utter_already_followed_portfolio
@@ -276,8 +276,8 @@ stories:
 - story: unfollow_successful
   steps: 
   - intent: unfollow
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"followed","name":"Masami Nishimura"}]
   - action: action_unfollow
@@ -285,8 +285,8 @@ stories:
 - story: unfollow_not_followed
   steps: 
   - intent: unfollow
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"not_followed","name":"Paulinho Simoes"}]
   - action: utter_already_not_followed_portfolio
@@ -294,8 +294,8 @@ stories:
 - story: unfollow_invalid_name
   steps: 
   - intent: unfollow
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"invalid","name":"John"}]
   - action: utter_invalid_portfolio
@@ -303,8 +303,8 @@ stories:
 - story: unfollow_null
   steps: 
   - intent: unfollow
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":null,"name":null}]
   - action: utter_invalid_portfolio
@@ -314,8 +314,8 @@ stories:
 - story: add_amount_to_not_followed_successful
   steps: 
   - intent: add_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"not_followed","name":"Florianne Paget","amount_query":"valid","amount":"50.00"}]
   - action: action_follow
@@ -323,8 +323,8 @@ stories:
 - story: add_amount_to_not_followed_successful
   steps: 
   - intent: add_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"not_followed","name":"Florianne Paget", "amount_query":null,"amount":null}]
   - action: action_ask_add_amount
@@ -334,28 +334,28 @@ stories:
 - story: add_amount_to_followed_successful
   steps: 
   - intent: add_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"followed","name":"Ralph Axelsen","amount_query":"valid","amount":"100"}]
-  - action: action_add_amount
+  - action: saction_add_amount
 
 - story: add_amount_to_followed_successful
   steps: 
   - intent: add_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"followed","name":"Andrzej Kraviec","amount_query":null,"amount":null}]
   - action: action_ask_add_amount
   - intent: amount
-  - action: action_add_amount
+  - action: saction_add_amount
 
 - story: add_amount_invalid_name
   steps: 
   - intent: add_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"invalid","name":"shrek"}]
   - action: utter_invalid_portfolio
@@ -363,8 +363,8 @@ stories:
 - story: add_amount_null_name
   steps: 
   - intent: add_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":null,"name":null}]
   - action: utter_invalid_portfolio
@@ -372,8 +372,8 @@ stories:
 - story: add_amount_invalid_amount
   steps: 
   - intent: add_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - amount_query: [{"amount_query":"invalid","name":"Andrzej Kraviec","amount":"-12.00"}]
   - action: utter_invalid_amount
@@ -381,8 +381,8 @@ stories:
 - story: add_amount_null_amount
   steps: 
   - intent: add_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"not_followed","name":"Masami Nishimura","amount_query":null,"amount":null}]
   - action: utter_invalid_amount
@@ -393,8 +393,8 @@ stories:
 - story: withdraw_amount_successful
   steps: 
   - intent: withdraw_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"followed","name":"Alois Reiter","amount_query":"valid","amount":"50"}]
   - action: action_withdraw_amount
@@ -402,8 +402,8 @@ stories:
 - story: withdraw_amount_successful
   steps: 
   - intent: withdraw_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"followed","name":"Benjamin Parker","amount_query":"valid","amount":"20.0"}]
   - action: action_withdraw_amount
@@ -411,8 +411,8 @@ stories:
 - story: withdraw_amount_successful
   steps: 
   - intent: withdraw_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"followed","name":"Alois Reiter","amount_query":"valid","amount":"100.0"}]
   - action: action_withdraw_amount
@@ -420,8 +420,8 @@ stories:
 - story: withdraw_amount_successful
   steps: 
   - intent: withdraw_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"followed","name":"Alois Reiter","amount_query":null,"amount":null}]
   - action: action_ask_withdraw_amount
@@ -433,8 +433,8 @@ stories:
 - story: withdraw_amount_invalid_name
   steps: 
   - intent: withdraw_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"invalid","name":"Mark Ritz","amount_query":"valid","amount":"10.00"}]
   - action: utter_invalid_portfolio
@@ -442,8 +442,8 @@ stories:
 - story: withdraw_amount_null_name
   steps: 
   - intent: withdraw_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":null,"name":null}]
   - action: utter_invalid_portfolio
@@ -451,8 +451,8 @@ stories:
 - story: withdraw_amount_not_followed
   steps: 
   - intent: withdraw_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"not_followed","name":"William Shore","amount_query":"valid","amount":"65.50"}]
   - action: utter_already_not_followed_portfolio
@@ -460,8 +460,8 @@ stories:
 - story: withdraw_from_successful
   steps: 
   - intent: withdraw_from
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"followed","name":"Florianne Paget","amount_query":null,"amount":null}]
   - action: action_ask_withdraw_amount
@@ -471,8 +471,8 @@ stories:
 - story: withdraw_from_successful
   steps: 
   - intent: withdraw_from
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"followed","name":"Florianne Paget","amount_query":null,"amount":null}]
   - action: action_ask_withdraw_amount
@@ -514,8 +514,8 @@ stories:
 - story: should_i_follow
   steps: 
   - intent: should_i_follow
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"not_followed","name":"Benjamin Parker"}]
   - action: action_should_i_follow_advice
@@ -523,8 +523,8 @@ stories:
 - story: should_i_follow_invalid
   steps: 
   - intent: should_i_follow
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"invalid","name":"Daniel"}]
   - action: utter_invalid_portfolio
@@ -532,8 +532,8 @@ stories:
 - story: should_i_follow_none
   steps: 
   - intent: should_i_follow
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":null,"name":null}]
   - action: utter_invalid_portfolio
@@ -541,8 +541,8 @@ stories:
 - story: should_i_follow_with_follow_successful
   steps: 
   - intent: should_i_follow
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"not_followed","name":"Benjamin Parker"}]
   - action: action_should_i_follow_advice
@@ -556,8 +556,8 @@ stories:
 - story: should_i_follow_with_follow_do_it_successful
   steps: 
   - intent: should_i_follow
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"not_followed","name":"Benjamin Parker"}]
   - action: action_should_i_follow_advice
@@ -571,8 +571,8 @@ stories:
 - story: should_i_follow_with_follow_do_it_successful
   steps: 
   - intent: should_i_follow
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"not_followed","name":"Florianne Paget"}]
   - action: action_should_i_follow_advice
@@ -586,8 +586,8 @@ stories:
 - story: should_i_follow_with_follow_already_followed
   steps: 
   - intent: should_i_follow
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"followed","name":"Benjamin Parker"}]
   - action: action_should_i_follow_advice
@@ -597,8 +597,8 @@ stories:
 - story: should_i_follow_with_follow_do_it_already_followed
   steps: 
   - intent: should_i_follow
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"followed","name":"Benjamin Parker"}]
   - action: action_should_i_follow_advice
@@ -608,8 +608,8 @@ stories:
 - story: should_i_follow_with_unfollow_successful
   steps: 
   - intent: should_i_follow
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"followed","name":"Andrzej Kraviec"}]
   - action: action_should_i_follow_advice
@@ -621,8 +621,8 @@ stories:
 - story: should_i_follow_with_unfollow_already_not_followed
   steps: 
   - intent: should_i_follow
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"not_followed","name":"Andrzej Kraviec"}]
   - action: action_should_i_follow_advice
@@ -634,21 +634,21 @@ stories:
 - story: should_i_follow_followed_with_add_amount
   steps: 
   - intent: should_i_follow
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"followed","name":"Ralph Axelsen","amount_query":null,"amount":null}]
   - action: action_should_i_follow_advice
   - intent: add_amount_to_him_her
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"followed","name":"Ralph Axelsen","amount_query":null,"amount":null}]
-  - action: action_add_amount
+  - action: saction_add_amount
 
 - story: should_i_follow_followed_with_add_to_him
   steps: 
   - intent: should_i_follow
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"followed","name":"Benjamin Parker","amount_query":null,"amount":null}]
   - action: action_should_i_follow_advice
@@ -657,13 +657,13 @@ stories:
     - portfolio_query: [{"portfolio_query":"followed","name":"Benjamin Parker","amount_query":null,"amount":null}]
   - action: action_ask_add_amount
   - intent: amount
-  - action: action_add_amount
+  - action: saction_add_amount
 
 - story: should_i_follow_not_followed_with_add_amount
   steps: 
   - intent: should_i_follow
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"not_followed","name":"Masami Nishimura","amount_query":null,"amount":null}]
   - action: action_should_i_follow_advice
@@ -673,8 +673,8 @@ stories:
 - story: should_i_follow_with_withdraw_amount_followed
   steps: 
   - intent: should_i_follow
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"followed","name":"Florianne Paget"}]
   - action: action_should_i_follow_advice
@@ -684,8 +684,8 @@ stories:
 - story: should_i_follow_with_withdraw_from_him_followed
   steps: 
   - intent: should_i_follow
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"followed","name":"Florianne Paget"}]
   - action: action_should_i_follow_advice
@@ -699,8 +699,8 @@ stories:
 - story: should_i_follow_with_withdraw_amount_not_followed
   steps: 
   - intent: should_i_follow
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"not_followed","name":"Florianne Paget"}]
   - action: action_should_i_follow_advice
@@ -710,8 +710,8 @@ stories:
 - story: should_i_follow_with_withdraw_from_him_her_not_followed
   steps: 
   - intent: should_i_follow
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"not_followed","name":"Florianne Paget"}]
   - action: action_should_i_follow_advice
@@ -723,8 +723,8 @@ stories:
 - story: should_i_unfollow
   steps: 
   - intent: should_i_unfollow
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"followed","name":"Paulinho Simoes"}]
   - action: action_should_i_unfollow_advice
@@ -732,8 +732,8 @@ stories:
 - story: should_i_unfollow_invalid
   steps: 
   - intent: should_i_follow
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"invalid","name":"Max Jasper"}]
   - action: utter_invalid_portfolio
@@ -741,8 +741,8 @@ stories:
 - story: should_i_unfollow_none
   steps: 
   - intent: should_i_unfollow
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":null,"name":null}]
   - action: utter_invalid_portfolio
@@ -750,8 +750,8 @@ stories:
 - story: should_i_unfollow_with_unfollow_successful
   steps: 
   - intent: should_i_unfollow
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"followed","name":"Paulinho Simoes"}]
   - action: action_should_i_unfollow_advice
@@ -761,8 +761,8 @@ stories:
 - story: should_i_unfollow_with_unfollow_do_it_successful
   steps: 
   - intent: should_i_unfollow
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"followed","name":"Paulinho Simoes"}]
   - action: action_should_i_unfollow_advice
@@ -772,8 +772,8 @@ stories:
 - story: should_i_unfollow_with_unfollow_already_not_followed
   steps: 
   - intent: should_i_unfollow
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"not_followed","name":"Paulinho Simoes"}]
   - action: utter_already_not_followed_portfolio
@@ -781,19 +781,19 @@ stories:
 - story: should_i_unfollow_with_add_amount
   steps: 
   - intent: should_i_unfollow
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"followed","name":"Kanya Bunnag"}]
   - action: action_should_i_unfollow_advice
   - intent: add_amount_to_him_her
-  - action: action_add_amount
+  - action: saction_add_amount
 
 - story: should_i_unfollow_with_withdraw_amount
   steps: 
   - intent: should_i_unfollow
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"followed","name":"William Shore"}]
   - action: action_should_i_unfollow_advice
@@ -805,8 +805,8 @@ stories:
 - story: should_i_add_amount
   steps: 
   - intent: should_i_add_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"followed","name":"Benjamin Parker"}]
   - action: action_should_i_follow_advice
@@ -814,8 +814,8 @@ stories:
 - story: should_i_add_amount
   steps: 
   - intent: should_i_add_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"not_followed","name":"Alois Reiter"}]
   - action: action_should_i_follow_advice
@@ -823,8 +823,8 @@ stories:
 - story: should_i_add_amount_invalid
   steps: 
   - intent: should_i_add_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"invalid","name":"Jack"}]
   - action: utter_invalid_portfolio
@@ -832,8 +832,8 @@ stories:
 - story: should_i_add_amount_none
   steps: 
   - intent: should_i_add_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":null,"name":null}]
   - action: utter_invalid_portfolio
@@ -841,19 +841,19 @@ stories:
 - story: should_i_add_amount_followed_with_add_amount_successful
   steps: 
   - intent: should_i_add_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"followed","name":"Benjamin Parker"}]
   - action: action_should_i_follow_advice
   - intent: add_amount_to_him_her
-  - action: action_add_amount
+  - action: saction_add_amount
 
 - story: should_i_add_amount_not_followed_with_add_amount_successful
   steps: 
   - intent: should_i_add_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"not_followed","name":"Benjamin Parker"}]
   - action: action_should_i_follow_advice
@@ -863,8 +863,8 @@ stories:
 - story: should_i_add_amount_followed_with_add_successful
   steps: 
   - intent: should_i_add_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"followed","name":"Kanya Bunnag"}]
   - action: action_should_i_follow_advice
@@ -873,13 +873,13 @@ stories:
     - portfolio_query: [{"portfolio_query":"followed","name":"Kanya Bunnag"}]
   - action: action_ask_add_amount
   - intent: amount
-  - action: action_add_amount
+  - action: saction_add_amount
 
 - story: should_i_add_amount_followed_with_add_successful
   steps: 
   - intent: should_i_add_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"followed","name":"Florianne Paget"}]
   - action: action_should_i_follow_advice
@@ -888,13 +888,13 @@ stories:
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"followed","name":"Florianne Paget"}]
   - intent: amount
-  - action: action_add_amount
+  - action: saction_add_amount
 
 - story: should_i_add_amount_followed_with_withdraw_amount
   steps: 
   - intent: should_i_add_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"followed","name":"Florianne Paget"}]
   - action: action_should_i_follow_advice
@@ -908,8 +908,8 @@ stories:
 - story: should_i_add_amount_not_followed_with_add_successful
   steps: 
   - intent: should_i_add_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"not_followed","name":"Kanya Bunnag"}]
   - action: action_should_i_follow_advice
@@ -923,8 +923,8 @@ stories:
 - story: should_i_add_amount_not_followed_with_add_successful
   steps: 
   - intent: should_i_add_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"not_followed","name":"Kanya Bunnag","amount_query":null,"amount":null}]
   - action: action_should_i_follow_advice
@@ -938,8 +938,8 @@ stories:
 - story: should_i_add_amount_not_followed_with_add_successful
   steps: 
   - intent: should_i_add_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"not_followed","name":"Kanya Bunnag","amount_query":"valid","amount":"50"}]
   - action: action_should_i_follow_advice
@@ -949,8 +949,8 @@ stories:
 - story: should_i_add_amount_not_followed_with_add_successful
   steps: 
   - intent: should_i_add_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"not_followed","name":"Florianne Paget","amount_query":"valid","amount":"200"}]
   - action: action_should_i_follow_advice
@@ -960,19 +960,19 @@ stories:
 - story: should_i_add_amount_followed_with_add_successful
   steps: 
   - intent: should_i_add_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"followed","name":"Kanya Bunnag","amount_query":"valid","amount":"100"}]
   - action: action_should_i_follow_advice
   - intent: do_it
-  - action: action_add_amount
+  - action: saction_add_amount
 
 - story: should_i_add_amount_invalid_name
   steps: 
   - intent: should_i_add_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"invalid","name":"George Smith"}]
   - action: utter_invalid_portfolio
@@ -980,8 +980,8 @@ stories:
 - story: should_i_add_amount_null_name
   steps: 
   - intent: should_i_add_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":null,"name":null}]
   - action: utter_invalid_portfolio
@@ -989,8 +989,8 @@ stories:
 - story: should_i_add_amount_invalid_amount
   steps: 
   - intent: should_i_add_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - amount_query: [{"amount_query":"invalid","amount":"-48.239"}]
   - action: utter_invalid_amount
@@ -1001,8 +1001,8 @@ stories:
 - story: should_i_withdraw_amount_not_followed
   steps: 
   - intent: should_i_withdraw_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"not_followed","name":"Benjamin Parker"}]
   - action: utter_already_not_followed_portfolio
@@ -1010,8 +1010,8 @@ stories:
 - story: should_i_withdraw_amount_invalid
   steps: 
   - intent: should_i_add_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"invalid","name":"Jack"}]
   - action: utter_invalid_portfolio
@@ -1019,8 +1019,8 @@ stories:
 - story: should_i_withdraw_amount_none
   steps: 
   - intent: should_i_withdraw_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":null,"name":null}]
   - action: utter_invalid_portfolio
@@ -1028,8 +1028,8 @@ stories:
 - story: should_i_withdraw_amount_followed_with_withdraw_amount_successful
   steps: 
   - intent: should_i_withdraw_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"followed","name":"Benjamin Parker"}]
   - action: action_should_i_unfollow_advice
@@ -1039,8 +1039,8 @@ stories:
 - story: should_i_withdraw_amount_followed_with_withdraw_successful
   steps: 
   - intent: should_i_withdraw_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"followed","name":"Kanya Bunnag"}]
   - action: action_should_i_unfollow_advice
@@ -1054,8 +1054,8 @@ stories:
 - story: should_i_withdraw_amount_followed_with_withdraw_successful
   steps: 
   - intent: should_i_withdraw_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"followed","name":"Kanya Bunnag"}]
   - action: action_should_i_unfollow_advice
@@ -1069,8 +1069,8 @@ stories:
 - story: should_i_withdraw_amount_followed_with_withdraw_successful
   steps: 
   - intent: should_i_withdraw_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"followed","name":"Kanya Bunnag","amount_query":"valid","amount":"100"}]
   - action: action_should_i_unfollow_advice
@@ -1080,8 +1080,8 @@ stories:
 - story: should_i_withdraw_amount_with_add_more
   steps: 
   - intent: should_i_withdraw_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"followed","name":"Benjamin Parker","amount_query":null,"amount":null}]
   - action: action_should_i_follow_advice
@@ -1090,15 +1090,15 @@ stories:
     - portfolio_query: [{"portfolio_query":"followed","name":"Benjamin Parker","amount_query":null,"amount":null}]
   - action: action_ask_add_amount
   - intent: amount
-  - action: action_add_amount
+  - action: saction_add_amount
 
 
 
 - story: should_i_withdraw_amount_invalid_name
   steps: 
   - intent: should_i_withdraw_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":"invalid","name":"George Smith"}]
   - action: utter_invalid_portfolio
@@ -1106,8 +1106,8 @@ stories:
 - story: should_i_withdraw_amount_null_name
   steps: 
   - intent: should_i_withdraw_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - portfolio_query: [{"portfolio_query":null,"name":null}]
   - action: utter_invalid_portfolio
@@ -1115,8 +1115,8 @@ stories:
 - story: should_i_withdraw_amount_invalid_amount
   steps: 
   - intent: should_i_withdraw_amount
-  - action: action_add_amount
-  - action: action_add_amount
+  - action: action_reset_slots
+  - action: action_fetch_portfolio
   - slot_was_set: 
     - amount_query: [{"amount_query":"invalid","amount":"-48.239"}]
   - action: utter_invalid_amount
