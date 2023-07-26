@@ -13,7 +13,9 @@ from .models import (
     # DismissNotificationCount,
     Result,
     QuestionnaireResponse,
-    FallbackCount
+    FallbackCount,
+    NewsfeedButtonClick,
+    BotButtonClick,
     )
 
 
@@ -96,6 +98,8 @@ class UserActionAdmin(ExportActionModelAdmin):
     resource_class = UserActionResource
 
 
+
+
 # class DismissNotificationCountResource(resources.ModelResource):
 #     class Meta:
 #         model = DismissNotificationCount
@@ -117,3 +121,5 @@ admin.site.register(Profile)
 admin.site.register(Portfolio)
 admin.site.register(Participant)
 admin.site.register(Condition)
+admin.site.register(NewsfeedButtonClick)
+admin.site.register(BotButtonClick)
