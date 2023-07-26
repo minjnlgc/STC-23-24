@@ -171,3 +171,15 @@ class FallbackCount(models.Model):
 
     def __str__(self):
         return self.user.username
+    
+class NewsfeedButtonClick(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    click_count = models.IntegerField(default=0, null=False)
+
+class BotButtonClick(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    click_count = models.IntegerField(default=0, null=False)
+    
+#clicktype = models.CharField(max_length=128, null=False)
+
+
