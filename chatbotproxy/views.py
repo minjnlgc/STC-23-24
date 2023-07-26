@@ -1,4 +1,5 @@
 # coding: utf-8
+from pprint import pprint
 from django.views.decorators.http import require_POST
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -12,6 +13,7 @@ from django.contrib.auth.models import User
 @require_POST
 def webhook_view(request):
     client_data = json.loads(request.body.decode('utf-8'))
+    pprint(("CLIENT DATA TO RASA WEBHOOK IS", client_data))
     # localhost:5005/webhooks/rest/webhook
     url = "http://localhost:5500/webhooks/rest/webhook"
     # TODO: get json data from the request
