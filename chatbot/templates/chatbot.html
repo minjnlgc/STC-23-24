@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+
 {% load static %}
 
 {% load chatbot_filters %}
@@ -64,7 +65,8 @@
     </div>
   </div>
 
-  <div class="row" id="content-row">
+  <div class="row" id="
+  row">
     <div class="col-4" id="portfolios">
 
       <!-- <link rel="stylesheet" href="{% static 'chatbot/css/style.css' %}"> -->
@@ -127,7 +129,7 @@
                   {% endwith %}
                 </div>
 
-                <div class="content-portfolio">
+                <div class="content-portfolio">          
                   <div class="head-portfolio">
                       <p>{{ not_followed_portfolio.profile.name }}</p>
                   </div>
@@ -190,12 +192,10 @@
 
     <div class="col-4" id="newsfeed">
       <div class="scrollable-newsposts">
-
-        <script>
-          var profiles_list = '{{ profiles }}';
-          // var newsposts_list = '{{ newsposts }}';
-
-        </script>
+          <script>
+            var profiles_list = '{{ profiles }}';
+            // var newsposts_list = '{{ newsposts }}';
+          </script>
       </div>
     </div>
   </div>
@@ -215,8 +215,93 @@
     </div>
   </div>
 
+  <!-- The CredModal0 -->
+  <div id="CredModal-0" class="cred-modal">
+  
+    <!-- CredModal content -->
+    <div id= "CredModal0Content" class="modal-content">
+      <span onClick=hideModal(0) id= "credclose" class="close">&times; </span>
+      <p>this recommendation has been found to align with no sources</p>
+      <!-- <div class="cred-img">
+        <img src="https://i.imgur.com/Z1yQg3s.png">
+      </div> --> 
+    </div>
+  
+  </div>
 
-  <!-- Modal -->
+  <!-- The CredModal1 -->
+  <div id="CredModal-1" class="cred-modal">
+  
+    <!-- CredModal1 content -->
+    <div id= "CredModal1Content" class="modal-content">
+      <span onClick=hideModal(1) id= "credclose" class="close">&times; </span>
+      <p>this recommendation has been found to align with at least 1 sources</p>
+      <!-- <div class="cred-img">
+        <img src="https://i.imgur.com/Z1yQg3s.png">
+      </div> --> 
+    </div>
+  
+  </div>
+
+  <!-- The CredModal2 -->
+  <div id="CredModal-2" class="cred-modal">
+  
+    <!-- CredModal2 content -->
+    <div id= "CredModal2Content" class="modal-content">
+      <span onClick=hideModal(2) id= "credclose" class="close">&times; </span>
+      <p>this recommendation has been found to align with at least 2 sources</p>
+      <!-- <div class="cred-img">
+        <img src="https://i.imgur.com/Z1yQg3s.png">
+      </div> --> 
+    </div>
+  
+  </div>
+
+  <!-- The CredModal3 -->
+  <div id="CredModal-3" class="cred-modal">
+  
+    <!-- CredModal3 content -->
+    <div id= "CredModal3Content" class="modal-content">
+      <span onClick=hideModal(3) id= "credclose" class="close">&times; </span>
+      <p>this recommendation has been found to align with at least 3 sources</p>
+      <!-- <div class="cred-img">
+        <img src="https://i.imgur.com/Z1yQg3s.png">
+      </div> --> 
+    </div>
+  
+  </div>
+
+  <!-- The CredModal4 -->
+  <div id="CredModal-4" class="cred-modal">
+  
+    <!-- CredModal4 content -->
+    <div id= "CredModal4Content" class="modal-content">
+      <span onClick=hideModal(4) id= "credclose" class="close">&times; </span>
+      <p>this recommendation has been found to align with at least 4 sources</p>
+      <!-- <div class="cred-img">
+        <img src="https://i.imgur.com/Z1yQg3s.png">
+      </div> --> 
+    </div>
+  
+  </div>
+
+  <!-- The CredModal5 -->
+  <div id="CredModal-5" class="cred-modal">
+  
+    <!-- CredModal5 content -->
+    <div id= "CredModal5Content" class="modal-content">
+      <span onClick=hideModal(5) id= "credclose" class="close">&times; </span>
+      <p>this recommendation has been found to align with at least 5 sources</p>
+      <!-- <div class="cred-img">
+        <img src="https://i.imgur.com/Z1yQg3s.png">
+      </div> --> 
+    </div>
+  
+  </div>
+
+
+
+  <!-- Month Updates Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -232,6 +317,7 @@
     </div>
   </div>
 </div>
+
 
 </div>
 
