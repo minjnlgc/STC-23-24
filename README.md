@@ -9,10 +9,10 @@ create conda environment with python 3.9.12
 
 activate the environment: `conda activate rasa`
 
-install the required libraries: `pip install -r requirements.txt`
-
-if that fails, these are the packages required:
+install the required libraries: `pip install -r requirements.txt` <br>
+**note**: this requirements file is for OS X -- on other OSs a different version tensor flow is probably needed. The packages required should be:
 - rasa
+- spacy
 - django
 - django-import-export
 - django-mathfilters
@@ -43,15 +43,13 @@ Then you will need 3 terminal tabs or windows (there should be one already open)
 In the first terminal run:
 
 ```
-cd rasachat
-rasa run --enable-api --cors "*" --debug -p 5500
+./start_rasa.sh
 ```
 
 In the second terminal run
 
 ```
-cd rasachat
-rasa run --enable-api --cors "*" --debug -p 5500
+./start_rasa_actions.sh
 ```
 
 In the third terminal run
