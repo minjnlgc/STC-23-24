@@ -44,6 +44,8 @@ else:
 
 SERVER_EMAIL = 'iot@cs.ucl.ac.uk'
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 if LIVE:
     ALLOWED_HOSTS = ['iot.cs.ucl.ac.uk',]
     ROOT_URL = '%s://%s/%s' % (PROTOCOL, hostname, DEPLOYMENT_NAME)
@@ -169,7 +171,7 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-USE_L10N = True
+# USE_L10N = True
 
 USE_TZ = True
 
