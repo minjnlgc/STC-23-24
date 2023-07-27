@@ -330,7 +330,7 @@ class FetchPortfolio(Action):
     def run(self, dispatcher, tracker, domain):
         username = tracker.current_state()["sender_id"]
 
-        print('action_fetch_portfolio')
+        # print('action_fetch_portfolio')
 
         connection.close()
         user = User.objects.get(username=username)
@@ -339,7 +339,7 @@ class FetchPortfolio(Action):
         for e in tracker.latest_message['entities']:
             if e['entity'] == 'portfolio_name':
                 profile_name = e['value']
-        print('profile_name:', profile_name)
+        # print('profile_name:', profile_name)
 
         amount = None
         amount_query = None
@@ -359,12 +359,12 @@ class FetchPortfolio(Action):
 
             try:
                 profile_object = Profile.objects.get(name__icontains=profile_name)
-                print('profile_object', profile_object)
+                # print('profile_object', profile_object)
                 profile_name = profile_object.name
-                print('profile_name', profile_name)
+                # print('profile_name', profile_name)
 
                 portfolio = Portfolio.objects.get(user=user, profile=profile_object.id)
-                print('portfolio', portfolio)
+                # print('portfolio', portfolio)
 
                 if portfolio.followed:
                     portfolio_query = "followed"
@@ -377,10 +377,10 @@ class FetchPortfolio(Action):
                     amount_query = "invalid"
 
             except (IndexError, MultipleObjectsReturned) as e:
-                print('exception:', e)
+                # print('exception:', e)
                 portfolio_query = "invalid"
 
-        print('portfolio_query', portfolio_query)
+        # print('portfolio_query', portfolio_query)
         return [SlotSet("portfolio_query", portfolio_query), SlotSet("name", profile_name), SlotSet("amount_query", amount_query), SlotSet("amount", amount)]
 
 
