@@ -1,5 +1,7 @@
 # coding: utf-8
 from django.urls import path, include
+from . import views
+from django.conf import settings
 
 from .views import (
     welcome_page,
@@ -17,7 +19,9 @@ from .views import (
     # update_dismiss_notification_count,
     store_bot_message,
     results_page,
-    questionnaire_view
+    questionnaire_view,
+    getNewsfeedButtonClick,
+    getBotButtonClick,
     )
 
 urlpatterns = [
@@ -38,4 +42,9 @@ urlpatterns = [
     path('storebotmessage/', store_bot_message, name='storebotmessage'),
     path('results/', results_page, name='resultspage'),
     path('questionnaire/', questionnaire_view, name='questionnaire_view'),
+    #path('get/', views.getButtonClick),
+    #path('post/', views.postButtonClick),
+    path('newsfeedbuttonclick/', getNewsfeedButtonClick, name='newsfeed_button_click'),
+    path('botbuttonclick/', getBotButtonClick, name='bot_button_click'),
+
 ]

@@ -5,8 +5,8 @@ from random import gauss, randrange
 import decimal
 import os
 
-from django.http import HttpResponse, HttpResponseBadRequest
-from django.shortcuts import render, redirect
+from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse
+from django.shortcuts import render, redirect, get_object_or_404
 from django.template.loader import get_template
 from django.views.decorators.http import require_POST, require_http_methods
 from django.views.decorators.csrf import csrf_exempt
@@ -18,10 +18,30 @@ from django.utils.timezone import datetime
 from django.core import serializers
 from django.db import IntegrityError
 
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+
+#from .serializer import ButtonSerializer
+
 from .djutils import to_dict
 
 from .models import Profile, Portfolio, Balance, Month, Message, Participant, \
-    Condition, Result, QuestionnaireResponse, FallbackCount
+    Condition, Result, QuestionnaireResponse, FallbackCount, NewsfeedButtonClick, BotButtonClick
+
+    
+
+#@api_view (['GET'])
+#def getButtonClick(request):
+#    buttonclick = ButtonClick.objects.all()
+#    serializer = ButtonSerializer(buttonclick, many=True)
+#    return Response(serializer.data)
+
+#@api_view (['POST'])
+#def postButtonClick(request):
+#    serializer = ButtonSerializer(data=request.data)
+#    if serializer.is_valid():
+#        serializer.save()
+#    return Response(serializer.data)
 
 
 def welcome_page(request):
@@ -176,10 +196,38 @@ def get_condition_active(request):
 #
 #     return HttpResponse("")
 
+#SomeModel.objects.filter(foo='bar').first()
+# In this case, if the Person already exists, its name is updated
+#person, created = Person.objects.update_or_create(
+#        identifier=identifier, defaults={"name": name}
+#)
+
+@csrf_exempt
+@login_required
+def getNewsfeedButtonClick(request):
+    user = request.user
+    newsfeedbuttonclick, _ = NewsfeedButtonClick.objects.get_or_create(user=user)
+    newsfeedbuttonclick.click_count += 1
+    newsfeedbuttonclick.save()
+
+    return JsonResponse({"msg": "click count +1"})
+
+
+@csrf_exempt
+@login_required
+def getBotButtonClick(request):
+    user = request.user
+    botbuttonclick, _ = BotButtonClick.objects.get_or_create(user=user)
+    botbuttonclick.click_count += 1
+    botbuttonclick.save()
+
+    return JsonResponse({"msg": "click count +1"})
+
 
 @login_required
 def chatbot_page(request):
     user = request.user
+    print(user)
     profiles = Profile.objects.all()
     image_names = []
 
