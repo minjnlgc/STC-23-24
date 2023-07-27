@@ -1,3 +1,4 @@
+#coding:utf-8
 from typing import Any, Text, Dict, List
 
 from rasa_sdk import Action, Tracker
@@ -10,7 +11,7 @@ project_dir, _ = os.path.split(here)
 sys.path.insert(0, project_dir)
 
 import os, django
-os.environ["DJANGO_SETTINGS_MODULE"] = 'investment_bot.settings'
+# os.environ["DJANGO_SETTINGS_MODULE"] = 'investment_bot.settings'
 django.setup()
 from chatbot.models import Portfolio, Profile, Balance, Month, UserAction, FallbackCount
 from django.contrib.auth.models import User
@@ -150,6 +151,7 @@ class GiveFollowingAdvice(Action):
         return "action_give_following_advice"
 
     def run(self, dispatcher, tracker, domain):
+        print("action_give_following_advice")
         username = tracker.current_state()["sender_id"]
 
         connection.close()
@@ -328,13 +330,16 @@ class FetchPortfolio(Action):
     def run(self, dispatcher, tracker, domain):
         username = tracker.current_state()["sender_id"]
 
+        print('action_fetch_portfolio')
+
         connection.close()
         user = User.objects.get(username=username)
 
         profile_name = ''
         for e in tracker.latest_message['entities']:
-            if e['entity'] == 'name':
+            if e['entity'] == 'portfolio_name':
                 profile_name = e['value']
+        print('profile_name:', profile_name)
 
         amount = None
         amount_query = None
@@ -354,9 +359,12 @@ class FetchPortfolio(Action):
 
             try:
                 profile_object = Profile.objects.get(name__icontains=profile_name)
+                print('profile_object', profile_object)
                 profile_name = profile_object.name
+                print('profile_name', profile_name)
 
                 portfolio = Portfolio.objects.get(user=user, profile=profile_object.id)
+                print('portfolio', portfolio)
 
                 if portfolio.followed:
                     portfolio_query = "followed"
@@ -368,9 +376,11 @@ class FetchPortfolio(Action):
                 elif amount is not None and amount <= 0:
                     amount_query = "invalid"
 
-            except (IndexError, MultipleObjectsReturned):
+            except (IndexError, MultipleObjectsReturned) as e:
+                print('exception:', e)
                 portfolio_query = "invalid"
 
+        print('portfolio_query', portfolio_query)
         return [SlotSet("portfolio_query", portfolio_query), SlotSet("name", profile_name), SlotSet("amount_query", amount_query), SlotSet("amount", amount)]
 
 
@@ -1336,18 +1346,25 @@ class ShouldIUnfollowAdvice(Action):
 
 
 class ResetSlots(Action):
-    def name(self):
+    def name(self) -> Text:
         return "action_reset_slots"
 
-    def run(self, dispatcher, tracker, domain):
-        return [SlotSet("portfolio_query", None), SlotSet("name", None), SlotSet("amount_query", None), SlotSet("amount", None)]
+    # def run(self, dispatcher, tracker, domain):
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        return [
+            SlotSet("portfolio_query", None), 
+            SlotSet("name", None), 
+            SlotSet("amount_query", None), 
+            SlotSet("amount", None)
+            ]
 
 
 class FallbackAction(Action):
-    def name(self):
+    def name(self) -> Text:
         return "action_fallback"
 
-    def run(self, dispatcher, tracker, domain):
+    # def run(self, dispatcher, tracker, domain):
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         username = tracker.current_state()["sender_id"]
 
         connection.close()
