@@ -24,7 +24,7 @@ rules:
   - intent: follow_everyone
   - action: utter_please_follow_one_portfolio_at_a_time
 
-- rule: inform user of bots' capacity anytime user asks
-  steps: 
-  - intent: what_can_you_do
-  - action: utter_what_i_can_do
+# - rule: inform user of bots' capacity anytime user asks
+#   steps: 
+#   - intent: what_can_you_do
+#   - action: utter_what_i_can_do

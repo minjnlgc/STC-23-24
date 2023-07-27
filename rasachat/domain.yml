@@ -43,6 +43,7 @@ intents:
   - follow_everyone
 
 actions:
+  - utter_what_i_can_do
   - utter_greet
   - utter_cheer_up
   - utter_happy
@@ -77,7 +78,7 @@ actions:
 
 responses:
   utter_what_i_can_do:
-  - text: "Good question! You can tell me to follow or unfollow portfolios, add or withdraw amounts and ask me things like:  \"Should I invest 50 in ralph?\", \"Who should I unfollow?\", \"Invest another 100 on Aricka\" or \"withdraw from alois\""
+  - text: "Good question! You can tell me to follow or unfollow portfolios, add or withdraw amounts and ask me things like:  \"Who should I follow?\", \"Who should I unfollow?\", \"Invest another 100 on Aricka\" or \"withdraw from alois\""
     buttons:
       - title: "Give me some advice"
         payload: "Give me some advice"
@@ -85,7 +86,7 @@ responses:
         payload: "Who should I follow?"
       - title: "Who should I stop following?"
         payload: "Who should I stop following?"
-  - text: "Ask me things like \"Should I invest 100 in aricka?\" or \"Will masami's portfolio decrease?\" to get advice, or tell me things like \"invest 200 in alois\" or \"withdraw from benjamin\""
+  - text: "Ask me things like \"Who should I follow?\" or \"Will masami's portfolio decrease?\" to get advice, or tell me things like \"invest 200 in alois\" or \"withdraw from benjamin\""
     buttons:
       - title: "Give me some advice"
         payload: "Give me some advice"
