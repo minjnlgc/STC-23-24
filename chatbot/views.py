@@ -18,8 +18,8 @@ from django.utils.timezone import datetime
 from django.core import serializers
 from django.db import IntegrityError
 
-from rest_framework.response import Response
-from rest_framework.decorators import api_view
+#from rest_framework.response import Response
+#from rest_framework.decorators import api_view
 
 #from .serializer import ButtonSerializer
 
