@@ -210,8 +210,8 @@ stories:
   - intent: ask_unfollow_advice
   - action: action_reset_slots
   - action: action_give_unfollowing_advice
-  - slot_was_set:
-    - name: "Ralph Axelsen"
+  # - slot_was_set:
+  #   - name: "Ralph Axelsen"
 
 - story: give_unfollow_advice_with_unfollow
   steps:
@@ -257,11 +257,11 @@ stories:
   - intent: amount
   - action: action_follow
   # TODO: understand what is the role of the following
-  - slot_was_set:
-    - portfolio_query: null
-    - name: null
-    - amount_query: null
-    - amount: null
+  # - slot_was_set:
+  #   - portfolio_query: null
+  #   - name: null
+  #   - amount_query: null
+  #   - amount: null
 
 - story: follow_invalid_name
   steps:
@@ -430,9 +430,6 @@ stories:
     #- amount: null
   - action: utter_invalid_amount
 
-
-
-
 - story: withdraw_amount_successful
   steps:
   - intent: withdraw_amount
@@ -549,8 +546,6 @@ stories:
   - action: action_ask_withdraw_amount
   - intent: amount
   - action: action_withdraw_amount
-
-
 
 - story: unfollow_everyone_affirmed
   steps:
@@ -820,8 +815,6 @@ stories:
   - action: action_should_i_follow_advice
   - intent: withdraw_from_him_her
   - action: utter_already_not_followed_portfolio
-
-
 
 - story: should_i_unfollow
   steps:
