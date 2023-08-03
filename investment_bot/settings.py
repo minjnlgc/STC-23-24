@@ -31,7 +31,7 @@ ADMINS = (
 MANAGERS = ADMINS
 
 PROJECT_NAME = 'investment_bot'
-DEPLOYMENT_NAME = PROJECT_NAME
+DEPLOYMENT_NAME = 'n_bot'
 
 PROTOCOL = "https"
 # Put the hostname where the site will be deployed here.
@@ -55,7 +55,7 @@ if LIVE:
     HOSTING = 'deployment'
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = False
-    # DEBUG = True
+    DEBUG = True
     ALLOWED_HOSTS.append(hostname)
     EMAIL_HOST = 'smtp.cs.ucl.ac.uk'
     #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -117,7 +117,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'investment_bot.wsgi.application'
+WSGI_APPLICATION = 'n_bot.wsgi.application'
 
 
 # Database
@@ -205,10 +205,10 @@ LOGGING = {
             'format': '{"level": "%(levelname)s", "timestamp": "%(asctime)s", %(message)s}'
         },
         'simple': {
-            'format': 'investment_bot | %(levelname)s %(asctime)s %(message)s'
+            'format': 'n_bot | %(levelname)s %(asctime)s %(message)s'
         },
         'detailed': {
-            'format': "investment_bot | %(levelname)s %(asctime)s \n%(pathname)s %(filename)s \n%(funcName)s \n%(message)s"
+            'format': "n_bot | %(levelname)s %(asctime)s \n%(pathname)s %(filename)s \n%(funcName)s \n%(message)s"
         },
     },
     'handlers': {
