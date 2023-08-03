@@ -26,26 +26,17 @@ $(document).ready(function () {
 
     $("#result_div_notification #typing-gif").remove();
 
-    let currVariant;
-    window.people.forEach((person) => {
-        if(message.toLowerCase().includes(person))
-          currVariant = window.peopleVariants.get(person);
-    });
-    if (currVariant == undefined)
-        currVariant = -1;
-
-
     // credibility button for robot
-    console.log("PRE: " + message);
-    message = message.replace(
+    const currVariant = window.variants.pop(); // variants exists in chatbot.js
+    message.replace(
       "++ADVICE++",
-      `<button class= cred-button onClick="showModal(${currVariant}, 'bot')">verified<i class='fa-regular fa-question-circle' style='font-size:13px;color:#7393b3;padding:4px'></i></button>`,
+      `<button class= cred-button onClick="showModal(${currVariant}, 'bot')">recommendation is verified</button>`,
     );
-    console.log(message);
     // remove bottom, just for testing. 
-    //message =
-    //  message +
-    //  `<button class= cred-button onClick="showModal(${currVariant}, 'bot')">verified<i class='fa-regular fa-question-circle' style='font-size:13px;color:#7393b3;padding:4px'></i></button>`;
+    message =
+      message +
+      `<button class= cred-button onClick="showModal(${currVariant}, 'bot')">recommendation is verified</button>`;
+    window.variants.splice(0, 0, currVariant);
 
     if (
       !periodicAdvice ||
