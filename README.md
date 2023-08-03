@@ -17,11 +17,6 @@ install the required libraries: `pip install -r requirements.txt` <br>
 - django-import-export
 - django-mathfilters
 
-The run 
-
-```
-python -m spacy download en_core_web_md
-```
 
 Once everything is installed, in the django project folder (where `manage.py` is) run:
 

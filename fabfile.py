@@ -1,17 +1,17 @@
-# This file is part of 
+# This file is part of sdsample
 #
-# SocialTradingChatbot is free software: you can redistribute it and/or modify
+# sdsample is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# SocialTradingChatbot is distributed in the hope that it will be useful,
+# sdsample is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU Affero General Public License for more details.
 #
 # You should have received a copy of the GNU Affero General Public License
-# along with SocialTradingChatbot.  If not, see <http://www.gnu.org/licenses/>.
+# along with sdsample.  If not, see <http://www.gnu.org/licenses/>.
 
 #encoding:UTF-8
 import os 
@@ -22,19 +22,18 @@ from patchwork.transfers import rsync
 #from fabric.network import needs_host
 #from fabric.state import env, output
 #from fabric.contrib import files
-from investment_bot.privatesettings import MYSQL_PASSWORD
 
 env = {}
 env['project_local'] = 'investment_bot'
-env['project_remote'] = 'n_bot'
+env['project_remote'] = 'investment_bot'
 
 # the db name must be at most 16 chars
 env['dbname'] = env['project_remote']
-env['dbpass'] = MYSQL_PASSWORD
+env['dbpass'] = '_mysql_PASSWORD'
 
 # env['hosts'] = ['iot.cs.ucl.ac.uk'] # list of hosts for deployment here
-# env['host'] = 'localhost:2222' # list of hosts for deployment here
-# env['remote_host'] = 'bip.cs.ucl.ac.uk'
+env['host'] = 'localhost:2222' # list of hosts for deployment here
+env['remote_host'] = 'iot.cs.ucl.ac.uk'
 #env['hostpath'] = '/srv/django-projects/'+env['project_remote+'/'']
 
 env['activate'] = 'source /srv/pve/' + env['project_remote'] + '/bin/activate'
@@ -55,17 +54,13 @@ def touch(c):
 
 @task
 def sync(c):
-    c.sudo('chown -R costanza /srv/django-projects/' + env['project_remote'])
     rsync(c, './', "/srv/django-projects/" + env['project_remote'] + "/",
-                   exclude=("fabfile.py","*.pyc",".git","*.db", "*.log", "venv",
-                            "uploads", 'media', 'fetch_alertme_data.py',
-                            ".rasa", "models",
-                            'alertme_info.csv'),
+                   exclude=("fabfile.py", "*.pyc",".git*","*.db", "*.log", "venv",
+                            "uploads", 'media', '*.tar.gz'),
                    delete=False,
                    rsync_opts="",
                   )
     # TODO: consider/test instead passing rsync_opts="--no-perms" -- see https://unix.stackexchange.com/questions/65621/rsync-is-changing-my-directory-permissions
-    c.sudo('chown -R www-data /srv/django-projects/' + env['project_remote'])
     c.sudo('chmod -R g+w /srv/django-projects/' + env['project_remote'])
 
 @task
@@ -80,25 +75,15 @@ def migrate(c):
 
 @task
 def deploy(c):
-    #set_user(c)
     sync(c)
     collect_static(c)
-    #touch(c)
     migrate(c)
     restart_gunicorn(c)
-    restart_rasa(c)
-    restart_rasa_actions(c)
 
 @task
 def reset_db(c):
     with c.cd('/srv/django-projects/' + env['project_remote'] + '/'):
         virtualenv(c, 'python manage.py syncdb')
-
-@task
-def rasa_train(c):
-    with c.cd('/srv/django-projects/' + env['project_remote'] + '/rasachatbot/'):
-        virtualenv(c, 'rasa train --domain domains')
-    c.sudo('systemctl restart rasa-%(project_remote)s.service' % env)
 
 @task
 def restart_gunicorn(c):
@@ -110,13 +95,8 @@ def restart_gunicorn(c):
 def restart_rasa(c):
     #c.sudo('systemctl daemon-reload')
     #c.sudo('systemctl restart gunicorn-' + env['project_remote'])
-    c.sudo('systemctl restart rasa-%(project_remote)s.service' % env)
-
-@task
-def restart_rasa_actions(c):
-    #c.sudo('systemctl daemon-reload')
-    #c.sudo('systemctl restart gunicorn-' + env['project_remote'])
     c.sudo('systemctl restart rasa-actions-%(project_remote)s.service' % env)
+    c.sudo('systemctl restart rasa-%(project_remote)s.service' % env)
 
 @task
 def pull_data(c):
@@ -128,24 +108,30 @@ def pull_data(c):
 @task
 def setup_virtualenv(c):
     #with lcd("../" + env['project_local'] + "/"):
-    c.put("requirements_srv.txt", "/tmp/")
+#     c.put("requirements_srv.txt", "/tmp/")
 
-    with c.cd('/srv/pve/'):
-        c.run('virtualenv -p python3 %(project_remote)s' % env)
+#     with c.cd('/srv/pve/'):
+#         c.run('virtualenv -p python3 --no-site-packages %(project_remote)s' % env)
 
-    virtualenv(c, 'pip install -r /tmp/requirements_srv.txt')
+#     virtualenv(c, 'pip install -r /tmp/requirements_srv.txt')
+        pass
+        # TODO: check if python3.7 is available, if not install it via apt
+        # then use something like c.run('virtualenv -python=/usr/bin/python3.7 %(project_remote)s' % env)
+        # then install rasa via 
+        # pip install rasa --extra-index-url https://pypi.rasa.com/simple
+        # then 
+        # pip install spacy 
+        # then python -m spacy download en
 
 @task
 def setup_db(c):
-    # command = """echo "create database if not exists %(dbname)s; GRANT ALL ON %(dbname)s.* TO '%(dbname)s'@'localhost' IDENTIFIED BY '%(dbname)s@%(dbpass)s'; " | mysql -u root -p%(dbpass)s""" % env
-    # c.run(command)
-    command = """echo "create database if not exists %(dbname)s; CREATE USER '%(dbname)s'@'localhost' IDENTIFIED BY '%(dbname)s@%(dbpass)s'; GRANT ALL ON %(dbname)s.* TO'%(dbname)s'@'localhost'" | mysql -u root -p%(dbpass)s""" % env
+    command = """echo "create database if not exists %(dbname)s; GRANT ALL ON %(dbname)s.* TO '%(dbname)s'@'localhost' IDENTIFIED BY '%(dbname)s@%(dbpass)s'; " | mysql -u root -p%(dbpass)s""" % env
     c.run(command)
 
 @task
 def setup_project(c):
     with c.cd('/srv/django-projects/'):
-        virtualenv(c, 'django-admin startproject %(project_remote)s' % env)
+        virtualenv(c, 'django-admin.py startproject %(project_remote)s' % env)
 
 @task
 def setup_logfile(c):
@@ -185,11 +171,6 @@ def setup_nginx(c):
 
     location /%(project_remote)s/admin-media/ {
         alias /srv/pve/%(project_remote)s/lib/python3.5/site-packages/django/contrib/admin/media/;
-    }
-    
-    location /%(project_remote)s/rasa-endpoint/ {
-        include proxy_params;
-        proxy_pass http://localhost:5006/;
     }
 
     location /%(project_remote)s/ {
@@ -268,10 +249,75 @@ WantedBy=sockets.target""" % env
     # restart things
     restart_gunicorn(c)
 
+@task
+def setup_rasa(c):
+    # TODO: test this
+    # based on https://unix.stackexchange.com/questions/409609/how-to-run-a-command-inside-a-virtualenv-using-systemd
+    rasaServiceConf = """
+[Unit]
+Description=rasa daemon for %(project_remote)s 
+After=network.target
+
+[Service]
+PIDFile=/run/rasa_%(project_remote)s/pid
+User=costanza
+Group=www-data
+RuntimeDirectory=rasa_%(project_remote)s
+WorkingDirectory=/srv/django-projects/%(project_remote)s/rasachat
+ExecStart=/bin/bash -c 'source  /srv/pve/%(project_remote)s/bin/activate && \
+        /srv/pve/%(project_remote)s/bin/rasa \
+        run -m models -p 5500 --enable-api'
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+""" % env
+
+    fname = 'rasa-%(project_remote)s.service' % env
+    open(fname, 'w').write(rasaServiceConf)
+    # TODO: test this
+    #gunicorn_config_filename = 'gunicorn-%(project_remote)s.service' % env
+
+    c.put(fname, '/tmp/')
+    c.sudo('mv /tmp/' + fname + ' /etc/systemd/system/' + fname)
+    os.remove(fname)
+
+    rasaActionsSocketConf = """
+[Unit]
+Description=rasa actions daemon for %(project_remote)s 
+After=network.target
+
+[Service]
+PIDFile=/run/rasa_actions_%(project_remote)s/pid
+User=costanza
+Group=www-data
+RuntimeDirectory=rasa_actions_%(project_remote)s
+WorkingDirectory=/srv/django-projects/%(project_remote)s/rasachat
+ExecStart=/bin/bash -c 'source  /srv/pve/%(project_remote)s/bin/activate && \
+        /srv/pve/%(project_remote)s/bin/rasa \
+        run actions'
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+""" % env
+
+    fname = 'rasa-actions-%(project_remote)s.service' % env
+    open(fname, 'w').write(rasaActionsSocketConf)
+    c.put(fname, '/tmp/')
+    c.sudo('mv /tmp/' + fname + ' /etc/systemd/system/' + fname)
+    os.remove(fname)
+
+    # TODO: restart things
+    restart_rasa(c)
 
 @task
 def setup(c):
-    # setup_virtualenv(c)
+    setup_virtualenv(c)
     setup_db(c)
     setup_project(c)
     setup_directories(c)
