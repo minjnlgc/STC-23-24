@@ -1,5 +1,7 @@
 # Social Trading Chatbot -- 2023 update
 
+This repo was cloned from https://github.com/niccioci/STC-edited
+
 ## Setup
 clone the git repository
 
@@ -65,3 +67,4 @@ python manage.py runserver
 open a private or "incognito" browser window and go to:
 http://127.0.0.1:8000/?PROLIFIC_PID=TEST
  
+
