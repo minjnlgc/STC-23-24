@@ -65,3 +65,5 @@ python manage.py runserver
 open a private or "incognito" browser window and go to:
 http://127.0.0.1:8000/?PROLIFIC_PID=TEST
  
+---
+cloned the repo from https://github.com/niccioci/STC-edited
