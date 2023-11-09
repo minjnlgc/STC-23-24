@@ -460,7 +460,7 @@ $(document).ready(function () {
 
           const currVariant = window.variants.pop();
 
-          const btn = `<button class= cred-button onClick="showModal(${currVariant}, 'news')">recommendation is verified</button>`;
+          // const btn = `<button class= cred-button onClick="showModal(${currVariant}, 'news')">recommendation is verified</button>`;
 
           window.variants.splice(0, 0, currVariant);
 
@@ -480,7 +480,7 @@ $(document).ready(function () {
                   <p id="text-newspost"><strong>' +
             text +
             "</strong></p>" +
-            btn +
+            // btn +
             " \
                 </div> \
               </div> \

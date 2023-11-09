@@ -27,16 +27,16 @@ $(document).ready(function () {
     $("#result_div_notification #typing-gif").remove();
 
     // credibility button for robot
-    const currVariant = window.variants.pop(); // variants exists in chatbot.js
-    message.replace(
-      "++ADVICE++",
-      `<button class= cred-button onClick="showModal(${currVariant}, 'bot')">recommendation is verified</button>`,
-    );
+    // const currVariant = window.variants.pop(); // variants exists in chatbot.js
+    // message.replace(
+    //   "++ADVICE++",
+    //   `<button class= cred-button onClick="showModal(${currVariant}, 'bot')">recommendation is verified</button>`,
+    // );
     // remove bottom, just for testing. 
-    message =
-      message +
-      `<button class= cred-button onClick="showModal(${currVariant}, 'bot')">recommendation is verified</button>`;
-    window.variants.splice(0, 0, currVariant);
+    // message =
+    //   message +
+    //   `<button class= cred-button onClick="showModal(${currVariant}, 'bot')">recommendation is verified</button>`;
+    // window.variants.splice(0, 0, currVariant);
 
     if (
       !periodicAdvice ||
