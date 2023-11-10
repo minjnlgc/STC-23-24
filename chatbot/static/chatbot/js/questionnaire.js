@@ -27,12 +27,14 @@ d3.select(window).on("load", function () {
                 //    .attr('for', ``)
                 .html(item["question"]);
 
-            // wrap the choices
-            var choiceContainer = div.append("div").attr("class", "d-flex flex-column");
-            // choiceContainer.append('hr')
-            var choiceDiv = choiceContainer.append("div").attr("class", "d-flex justify-content-between");
-
             if ("choices" in item) {
+
+                // wrap the choices
+                var choiceContainer = div.append("div")
+                    .attr("class", "d-flex flex-column");
+                // choiceContainer.append('hr')
+                var choiceDiv = choiceContainer.append("div").attr("class", "d-flex justify-content-between rb");
+
                 // multiple choice question
                 item["choices"].forEach((choice, i) => {
                     // var html = `
@@ -69,7 +71,7 @@ d3.select(window).on("load", function () {
                             .html("Please select an answer.");
                     }
 
-                    
+
                 });
                 choiceContainer.append('hr');
             } else {
