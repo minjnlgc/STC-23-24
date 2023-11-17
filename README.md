@@ -1,9 +1,8 @@
 # Social Trading Chatbot 
-:bangbang: 17/11/2023: The rest of the changes would take place at:: https://github.com/ecostanza/SocialTradingChatbot/tree/voice
+:bangbang: 17/11/2023: The rest of the changes would take place at: https://github.com/ecostanza/SocialTradingChatbot/tree/voice
+??/11/2023: This repo was cloned from https://github.com/niccioci/STC-edited
 
 ---
-This repo was cloned from https://github.com/niccioci/STC-edited
-
 ## Setup
 clone the git repository
 
@@ -46,7 +45,7 @@ rasa train
 
 Then you will need 3 terminal tabs or windows (there should be one already open). In each of them activate the relevant conda environment and go to the django project folder (where manage.py is).
 
-(For windows user, you will need to have Git Bash. After [adding Conda to Git Bash](https://fmorenovr.medium.com/how-to-add-conda-to-git-bash-windows-21f5e5987f3d), run the following commands with virtual environment activated.)
+(:bangbang: For windows user, you will need to have Git Bash. After [adding Conda to Git Bash](https://fmorenovr.medium.com/how-to-add-conda-to-git-bash-windows-21f5e5987f3d), run the following commands with virtual environment activated.)
 
 In the first terminal run:
 
