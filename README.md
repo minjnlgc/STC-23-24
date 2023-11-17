@@ -1,5 +1,6 @@
 # Social Trading Chatbot 
 :bangbang: 17/11/2023: The rest of the changes would take place at: https://github.com/ecostanza/SocialTradingChatbot/tree/voice
+
 ??/11/2023: This repo was cloned from https://github.com/niccioci/STC-edited
 
 ---
