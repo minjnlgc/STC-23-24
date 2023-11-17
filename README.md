@@ -45,7 +45,7 @@ rasa train
 
 Then you will need 3 terminal tabs or windows (there should be one already open). In each of them activate the relevant conda environment and go to the django project folder (where manage.py is).
 
-(:bangbang: For windows user, you will need to have Git Bash. After [adding Conda to Git Bash](https://fmorenovr.medium.com/how-to-add-conda-to-git-bash-windows-21f5e5987f3d), run the following commands with virtual environment activated.)
+( :bangbang: For windows user, you will need to have Git Bash. After [adding Conda to Git Bash](https://fmorenovr.medium.com/how-to-add-conda-to-git-bash-windows-21f5e5987f3d), run the following commands with virtual environment activated.)
 
 In the first terminal run:
 
